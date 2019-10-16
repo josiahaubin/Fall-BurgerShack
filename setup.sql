@@ -30,3 +30,11 @@ USE burgershack100;
 -- REMOVE by
 -- DELETE FROM burgers WHERE id = 235;
 
+-- CREATE TABLE orders
+-- (
+--     id VARCHAR(255) NOT NULL,
+--     customerName VARCHAR(255) NOT NULL,
+
+--     PRIMARY KEY(id)
+-- );
+
