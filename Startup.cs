@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using BurgerShack.Repositories;
-using BurgerShack.Services;
+using Fall_BurgerShack.Repositories;
+using Fall_BurgerShack.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,8 +39,8 @@ namespace BurgerShack
 
       // this is how you create a service available for dependency injection
       //STUB This is unique to this project
-      services.AddTransient<BurgersService>();
-      services.AddTransient<BurgerRepository>();
+      services.AddTransient<ItemsService>();
+      services.AddTransient<ItemsRepository>();
 
     }
 

@@ -14,25 +14,25 @@ namespace Fall_BurgerShack.Repositories
       _db = db;
     }
 
-    internal IEnumerable<Item> Get()
+    public IEnumerable<Item> Get()
     {
       string sql = "SELECT * FROM items";
       return _db.Query<Item>(sql);
     }
 
-    internal Item Get(string id)
+    public Item Get(string id)
     {
       string sql = "SELECT * FROM items WHERE id = @id";
       return _db.QueryFirstOrDefault<Item>(sql, new { id });
     }
 
-    internal Item Exists(string property, string value)
+    public Item Exists(string property, string value)
     {
       string sql = "SELECT * FROM items WHERE @property = @value";
       return _db.QueryFirstOrDefault<Item>(sql, new { property, value });
     }
 
-    internal void Create(Item newItem)
+    public void Create(Item newItem)
     {
       string sql = @"
       INSERT INTO items
@@ -43,7 +43,7 @@ namespace Fall_BurgerShack.Repositories
       _db.Execute(sql, newItem);
     }
 
-    internal void Edit(Item editedItem)
+    public void Edit(Item editedItem)
     {
       string sql = @"
       UPDATE items
@@ -56,7 +56,7 @@ namespace Fall_BurgerShack.Repositories
       _db.Execute(sql, editedItem);
     }
 
-    internal void Remove(string id)
+    public void Remove(string id)
     {
       string sql = "DELETE FROM items WHERE id = @id";
       _db.Execute(sql, new { id });
