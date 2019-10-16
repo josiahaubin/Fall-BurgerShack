@@ -1,28 +1,57 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Fall_BurgerShack.Models;
+using Fall_BurgerShack.Repositories;
 
 namespace Fall_BurgerShack.Services
 {
   public class ItemsService
   {
-    internal object Get()
+    private readonly ItemsRepository _repo;
+    public ItemsService(ItemsRepository repo)
     {
-      throw new NotImplementedException();
+      _repo = repo;
     }
 
-    internal object Get(string id)
+    public IEnumerable<Item> Get()
     {
-      throw new NotImplementedException();
+      return _repo.Get();
     }
 
-    internal object Create(Item newItem)
+    public Item Get(string id)
     {
-      throw new NotImplementedException();
+      Item exists = _repo.Get(id);
+      if (exists == null) { throw new Exception("Invalid ID"); }
+      return exists;
     }
 
-    internal object Edit(Item editedItem)
+    public Item Create(Item newItem)
     {
-      throw new NotImplementedException();
+      Item exists = _repo.Exists("name", newItem.Name);
+      if (exists != null) { throw new Exception("We already have that item"); }
+      newItem.Id = Guid.NewGuid().ToString();
+      _repo.Create(newItem);
+      return newItem;
+    }
+
+    public Item Edit(Item editedItem)
+    {
+      Item item = _repo.Get(editedItem.Id);
+      if (item == null) { throw new Exception("Invalid ID"); }
+      item.Name = editedItem.Name;
+      item.Price = editedItem.Price;
+      item.Description = editedItem.Description;
+      _repo.Edit(editedItem);
+      return editedItem;
+    }
+
+    public string Delete(string id)
+    {
+      Item exists = _repo.Get(id);
+      if (exists == null) { throw new Exception("Invalid ID"); }
+      _repo.Remove(id);
+      return "Successfully Removed";
     }
   }
 }

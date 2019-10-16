@@ -1,5 +1,5 @@
-USE burgershack6;
--- CREATE TABLE burgers
+USE burgershack100;
+-- CREATE TABLE items
 -- (
 --     id VARCHAR(255) NOT NULL,
 --     name VARCHAR(255) NOT NULL,

@@ -69,5 +69,18 @@ namespace Fall_BurgerShack.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(string id)
+    {
+      try
+      {
+        return Ok(_is.Delete(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
